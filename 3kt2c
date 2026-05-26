@@ -1,0 +1,24 @@
+import csv
+
+def getting(something):
+    print(something)
+
+def task1(filename):
+    with open(filename, encoding='utf-8') as fil:
+        return list(csv.reader(fil, delimiter='|'))
+
+def task2(books, key_word):
+    new_books = books[1:]
+    filt = filter(lambda book: len(book) >= 2 and key_word.lower() in book[1].lower(), new_books)
+    new_new = map(lambda book: [book[0], f"{book[1]}, {book[2]}", book[3], book[4]], filt)
+    return list(new_new)
+
+def task3(books):
+    return list(map(lambda book: (book[0], float(book[2].replace('\\', '')) * float(book[3].replace('\\', ''))), books))
+
+books1 = task1('books.csv')
+getting(books1)
+books2 = task2(books1, key_word='python')
+getting(books2)
+books3 = task3(books2)
+getting(books3)
